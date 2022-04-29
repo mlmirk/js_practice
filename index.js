@@ -74,13 +74,13 @@ server.get("/students/city/:city", (req, res) => {
   return res.status(404).send(filteredStudents);
 });
 
-server.get("/students/search", (req, res) => {
-  const { junk } = req.query;
+server.get("/students/interests", (req, res) => {
+  const { intrestQuery } = req.query;
   const interestArray = [];
-  if (junk) {
+  if (intrestQuery) {
     const student = Object.values(students);
     student.forEach((x) => {
-      if (x.interests.includes(junk.toLowerCase())) {
+      if (x.interests.includes(intrestQuery.toLowerCase())) {
         interestArray.push(x);
       }
     });
