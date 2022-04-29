@@ -84,7 +84,7 @@ server.get("/students/search", (req, res) => {
         interestArray.push(x);
       }
     });
-    if (interestArray.) {
+    if (interestArray) {
       return res.send(interestArray);
     }
     return res.status(404).send(filteredStudents);
