@@ -87,7 +87,31 @@ server.get("/students/search", (req, res) => {
     if (interestArray) {
       return res.send(interestArray);
     }
-    return res.status(404).send(filteredStudents);
   }
-  return res.send("");
+  return res.status(404).send(filteredStudents);
+});
+
+server.get("/students", (req, res) => {
+  const { name, interest, city } = req.query;
+  if (name) {
+    const student = students[name.toLowerCase()];
+    if (student) {
+      return res.send(students[name]);
+    }
+    return res
+      .status(404)
+      .send({ error: `Student by the name of ${name} not found` });
+  }
+  let filteredStudents = Object.values(students);
+  if (interest) {
+    filteredStudents = filteredStudents.filter((student) =>
+      student.interests.includes(interest.toLowerCase())
+    );
+  }
+  if (city) {
+    filteredStudents = filteredStudents.filter(
+      (student) => student.city.toLowerCase() === city.toLowerCase()
+    );
+  }
+  return res.send(filteredStudents);
 });
