@@ -35,16 +35,16 @@ server.get("/mike", (req, res) => {
   res.send("<h1>Hi Michael</h1>");
 });
 
-server.get("/students", (req, res) => {
-  const { name } = req.query;
-  if (name) {
-    const student = students[name.toLowerCase()];
-    if (student) {
-      return res.send(student);
-    }
-    return res.status(404).send(filteredStudents);
-  }
-});
+// server.get("/students", (req, res) => {
+//   const { name } = req.query;
+//   if (name) {
+//     const student = students[name.toLowerCase()];
+//     if (student) {
+//       return res.send(student);
+//     }
+//     return res.status(404).send(filteredStudents);
+//   }
+// });
 
 server.get("/students/name/:name", (req, res) => {
   const { name } = req.params;
